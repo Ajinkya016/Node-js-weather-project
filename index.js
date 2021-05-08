@@ -6,7 +6,7 @@ const requests = require('requests');
 const express = require("express");
 const app = express();
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 const network = Object.values(os.networkInterfaces())[0][1].address;
 const EventEmitter = require('events');
 
@@ -20,7 +20,7 @@ To access with network , visit http://${network}:${port}/`)
 
 
 const serverData = {
-    port: 3000 || port,
+    port: process.env.PORT|| 3000,
     host: "127.0.0.1",
     network: network
 }
@@ -80,6 +80,6 @@ app.get('/:root', (req, res) => {
             res.end();
         });
 })
-app.listen(port || serverData.port, () => {
+app.listen(port, () => {
     event.emit("HttpCallbackFun");
 });
