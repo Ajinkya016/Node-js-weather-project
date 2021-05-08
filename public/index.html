@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather app</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        body .box {
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+
+            padding: 30px;
+            position: relative;
+            z-index: 1;
+            border-radius: 10px;
+            background-color: #a0b7dc;
+            overflow: hidden;
+            -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        body .box .wave {
+            height: 70vh;
+            width: 70vh;
+            background: #c9d3e6;
+            z-index: -1;
+            position: absolute;
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            border-radius: 40%;
+            bottom: -310px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+
+        body .box .-one {
+            -webkit-animation: rotate 2s ease-in infinite;
+            animation: rotate 2s ease-in infinite;
+        }
+
+        body .box .-two {
+            opacity: 0.7;
+            -webkit-animation: rotate 2s ease-in infinite;
+            animation: rotate 2s ease-in infinite;
+        }
+
+        body .box .-three {
+            opacity: 0.5;
+            -webkit-animation: rotate 5s ease-in infinite;
+            animation: rotate 5s ease-in infinite;
+        }
+
+        body .box #weathercon {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            height: 50vh;
+            width: 250px;
+            text-align: center;
+            padding-top: 40px;
+            z-index: 1;
+            padding-bottom: 20px;
+        }
+
+        body .box .aside {
+            z-index:10;
+            top:15px;
+            position: absolute;
+        }
+
+        body .box .aside .form input {
+            padding: 5px;
+            border: none;
+            outline: none;
+        }
+
+        body .box .aside .form button {
+            padding: 5px 15px;
+            border: none;
+            outline: none;
+            background-color: #6193e4;
+            color: #fff;
+        }
+
+        body .box #weathercon i.icn {
+            margin-top:10px;
+            font-size: 4.5rem;
+            -webkit-animation: fas-animate 3s linear infinite alternate;
+            animation: fas-animate 3s linear infinite alternate;
+        }
+
+        body .box #weathercon .info .grp1 {
+            margin-bottom: 40px;
+        }
+
+        body .box #weathercon .info .grp1 .location {
+            font-size: 2em;
+        }
+
+        body .box #weathercon .info .grp1 .date {
+            font-size: .6em;
+        }
+
+        body .box #weathercon .info .grp-2 {
+            margin-bottom: -20px;
+        }
+
+        @media (max-width: 712px) {
+            body .box {
+                width: 90vw;
+            }
+        }
+
+        @-webkit-keyframes rotate {
+            0% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+        }
+
+        @-webkit-keyframes fas-animate {
+            0% {
+                -webkit-transform: scale(1.1);
+                transform: scale(1.1);
+            }
+
+            100% {
+                -webkit-transform: scalSe(1.5);
+                transform: scale(1.5);
+            }
+        }
+
+        @keyframes fas-animate {
+            0% {
+                -webkit-transform: scale(1.1);
+                transform: scale(1.1);
+            }
+
+            100% {
+                -webkit-transform: scale(1.5);
+                transform: scale(1.5);
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="box">
+        <div class="aside">
+            <div class="form">
+                <input id="city" placeholder="Search for city." required type="text"> <button type="submit"
+                    onclick="location.href = '/'+document.getElementById('city').value;">Go</button>
+            </div>
+           
+        </div>
+
+        <div class="wave -one"></div>
+        <div class="wave -two"></div>
+        <div class="wave -three"></div>
+
+        <div id="weathercon">
+            <div id="icon">
+                <i class="icn fas fa-sun" style="color: #eccc68"></i>
+            </div>
+            <div class="info">
+                <div class="grp1">
+                    <h2 class="location">
+                        <i class="fas fa-street-view"></i> {%location%}, {%Country%}
+                    </h2>
+                    <p id="date">THUS | OCT 23 | 10:49 AM</p>
+                </div>
+                <div class="grp-2">
+                    <h1 class="temp">{%tempval%}&deg;C</h1>
+                    <p class="tempmin_max">Min {%tempmin%}&deg;C | Max {%tempmax%}&deg;C</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const curDate = document.getElementById('date');
+        const icon = document.getElementById('icon');
+        const tempStatus = "{%tempstatus%}";
+    
+
+        switch (tempStatus) {
+            case "Sunny":
+                    icon.innerHTML = `<i class="icn fas fa-sun" style="color: #eccc68"></i>`;
+                
+                break;
+            case "Clouds":
+                icon.innerHTML = `<i class="icn fas fa-cloud" style="color: #fff"></i>`;
+                break;
+            case "Haze":
+                icon.innerHTML = `<i class="icn fas fa-fog" style="color: #fff"></i>`;
+                break;
+            case "Rainy":
+                icon.innerHTML = `<i class="icn fas fa-cloud-rain" style="color: #fff"></i>`;
+                break;
+            default:
+                icon.innerHTML = `<i class="icn fas fa-cloud" style="color: #fff"></i>`;
+                break;
+        }
+
+        const currentTime = new Date();
+
+        const getCurrentDay = () => {
+
+            var weekday = [];
+            weekday[0] = "Sun";
+            weekday[1] = "Mon";
+            weekday[2] = "Tue";
+            weekday[3] = "Wed";
+            weekday[4] = "Thus";
+            weekday[5] = "Fri";
+            weekday[6] = "Sat";
+            return weekday[currentTime.getDay()];
+
+        };
+        const getCurrentTime = () => {
+            const months = [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "June",
+                "July",
+                "Aug",
+                "Sept",
+                "Oct",
+                "Nov",
+                "Dec",
+            ];
+            const month = months[currentTime.getMonth()];
+            const date = currentTime.getDate();
+
+            let hours = currentTime.getHours();
+            let mins = currentTime.getMinutes();
+
+            let period = "AM";
+            period = hours > 12 ? "PM" : "AM";
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            hours = hours < 10 ? "0" + hours : hours;
+            mins = mins < 10 ? "0" + mins : mins;
+
+            return `${month} ${date} | ${hours}:${mins} ${period}`;
+        }
+        curDate.innerHTML = getCurrentDay() + " | " + getCurrentTime();
+    </script>
+</body>
+
+</html>
